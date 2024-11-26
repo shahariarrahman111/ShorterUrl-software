@@ -1,0 +1,486 @@
+body{
+    background-color: #f0f8ff;
+}
+
+/* #head{
+  padding: 20px 0px;
+}
+
+/* #register{
+    padding: 0px 30px;
+} */
+
+/* #search{
+    margin-right: 8px;
+} */ 
+
+
+/* Header css */
+
+/* Header Styles */
+#head {
+  z-index: 9999;
+  padding: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar styling */
+.navbar {
+  padding: 15px 0;
+}
+
+/* Left Side: Dashboard */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f8f9fa !important;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #00bcd4 !important;
+}
+
+/* Search Bar */
+#search {
+  max-width: 400px;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.form-control {
+  background-color: #f1f1f1;
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+  border-color: #00bcd4;
+  box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+}
+
+/* Right Side: Profile */
+/* Header Styles */
+#head {
+  z-index: 9999;
+  padding: 10px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar styling */
+.navbar {
+  padding: 15px 0;
+}
+
+/* Left Side: Dashboard */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f8f9fa !important;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #00bcd4 !important;
+}
+
+/* Search Bar */
+/* Search Bar */
+#search {
+  max-width: 350px;
+  border-radius: 25px;
+  padding: 8px 15px; 
+  font-size: 0.9rem;
+}
+
+.form-control {
+  background-color: #f1f1f1;
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+  border-color: #00bcd4;
+  box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+}
+
+/* Search Button */
+.btn-primary {
+  padding: 8px 15px; 
+  font-size: 0.9rem; 
+  border-radius: 25px; 
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar-brand {
+      font-size: 1.2rem;
+  }
+
+  #search {
+      max-width: 300px; 
+      font-size: 0.8rem; 
+  }
+
+  .btn-primary {
+      font-size: 0.8rem; 
+  }
+}
+
+
+.form-control {
+  background-color: #f1f1f1;
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+  border-color: #00bcd4;
+  box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+}
+
+/* Right Side: Profile */
+.dropdown-menu {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.dropdown-item {
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #00bcd4;
+  color: #ffffff;
+}
+
+/* Profile Dropdown */
+#profileDropdown {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
+#profileDropdown:hover {
+  cursor: pointer;
+}
+
+#profileDropdown img {
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+  .navbar-brand {
+      font-size: 1.2rem;
+  }
+
+  #search {
+      max-width: 300px;
+  }
+}
+
+
+
+/* end header css */
+
+.text{
+    color: rgb(255, 0, 0);
+}
+
+/* #foot{
+    background-color: black;
+    padding: 30px;
+    margin-top: auto;
+  
+} */
+
+/* 
+
+body {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+} */
+/* Sidebar Style */
+.sidebar {
+  position: fixed;           /* Fixed position to keep it on the left side */
+  top: 0;                    /* Align it from the top of the page */
+  left: 0;                   /* Align it to the left of the page */
+  background-color: #343a40; /* Dark background */
+  color: white;              /* White text */
+  width: 250px;              /* Set a fixed width */
+  height: 100vh;             /* Full height of the viewport */
+  padding-top: 100px;         /* Add some padding from the top */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Add a small shadow */
+}
+
+.sidebar a {
+  display: block;            /* Make the links block level */
+  color: white;              /* Text color */
+  text-decoration: none;     /* Remove underline */
+  padding: 12px 20px;        /* Padding around links */
+  margin-bottom: 10px;       /* Space between links */
+  border-radius: 5px;        /* Rounded corners for links */
+  transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+.sidebar a:hover {
+  background-color: #007bff; /* Change background on hover */
+}
+
+/* Main content area styling */
+.main-content {
+  margin-left: 260px;        /* Offset the content to the right to make space for the sidebar */
+  padding: 20px;             /* Add padding inside main content */
+}
+
+/* Make sure the sidebar does not overlap with content on small screens */
+@media (max-width: 768px) {
+  .sidebar {
+      width: 100%;           /* Full width on mobile devices */
+      height: auto;          /* Auto height on mobile */
+      padding-top: 10px;     /* Reduce padding on top */
+  }
+
+  .main-content {
+      margin-left: 0;        /* Remove the left margin when the sidebar is full-width */
+  }
+}
+
+
+
+.top-section {
+  background-color: #01796F;
+  color: rgb(250, 245, 245);
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+#main{
+  margin-top: 50px;
+}
+
+#home{
+  margin-top: 40px;
+}
+
+#inot{
+  margin-bottom: 40px;
+}
+
+#log{
+  margin-right: 12px;
+}
+
+.custom-nav .nav-item .nav-link {
+  padding: 0 70px; 
+}
+
+.nav-link:hover {
+  color: #0d6efd; /* Primary Blue */
+  background-color: rgba(255, 255, 255, 0.1); /* Light transparent background */
+  border-radius: 5px; /* Slightly rounded corners */
+}
+
+#shorter-url-logo .shorter-text {
+  color: #FFFFFF; /* White color */
+}
+
+#shorter-url-logo .url-text {
+  color: #18d618; /* Deep Red color */
+}
+
+/* .hero-content{
+  margin-top: 9rem;
+} */
+
+/* Hero Section Styles */
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+              url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1920') 
+              no-repeat center center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.hero-content {
+  max-width: 800px;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-title .highlight {
+  color: #00bcd4; /* Highlight color */
+}
+
+.hero-description {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.hero-buttons a {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero-buttons .btn-primary {
+  background-color: #00bcd4;
+  color: #ffffff;
+  border: none;
+}
+
+.hero-buttons .btn-primary:hover {
+  background-color: #019b9b;
+}
+
+.hero-buttons .btn-outline-light {
+  background: none;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.hero-buttons .btn-outline-light:hover {
+  background-color: #ffffff;
+  color: #000;
+}
+
+
+ /* Custom Styles */
+ .url-submit-container {
+  max-width: 500px;
+  margin: 120px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.url-submit-container:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.url-submit-container h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.form-control {
+  border-radius: 10px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: inset 0 2px 4px rgba(0, 123, 255, 0.2);
+}
+
+.btn-custom {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 1.1rem;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #0056b3;
+}
+
+.btn-custom:active {
+  background-color: #00408c;
+}
+
+@media (max-width: 576px) {
+  .url-submit-container {
+      padding: 30px;
+  }
+
+  .url-submit-container h1 {
+      font-size: 1.8rem;
+  }
+
+  .form-control {
+      padding: 12px;
+  }
+
+    .btn-custom {
+        font-size: 1rem;
+        padding: 12px;
+  }
+}
+
+
+/* footer css */
+
+
+/* Footer Styling */
+#foot {
+  background-color: #333;  /* Dark background */
+  color: #f8f9fa;          /* Light text */
+  padding: 20px 0;         /* Top and bottom padding */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;         /* Slightly smaller text */
+}
+
+#foot p {
+  margin: 0;               /* Remove default margin */
+  line-height: 1.5;        /* Increase line height for readability */
+}
+
+#foot strong {
+  color: #007bff;          /* Blue color for the developer name */
+}
+
+#foot a {
+  color: #007bff;          /* Blue color for any links */
+  text-decoration: none;   /* Remove underline */
+}
+
+#foot a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #foot {
+      font-size: 13px;  /* Reduce font size on smaller screens */
+  }
+}
+
