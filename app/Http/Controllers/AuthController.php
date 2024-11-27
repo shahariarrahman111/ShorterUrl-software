@@ -40,7 +40,7 @@ class AuthController extends Controller
 
             // return response()->json(['message' => 'User registered successfully.'], 200);
 
-            return redirect()->route('login.form');
+            return redirect()->route('login.form')->with('User registered successfully.');
 
         }catch (Exception $e){
             return response()->json(['message' => $e->getMessage()], 500);
@@ -58,21 +58,18 @@ class AuthController extends Controller
                 'password' => 'required|string|min:6'
             ]);
 
-            $user = User::where('email', $request->email)->first();
-
-            if (!$user || !Hash::check($request->password, $user->password)) {
-                return response()->json(['message' => 'These credentials do not match our records.'], 404);
+            if (!Auth::attempt($request->only('email', 'password'))) {
+                abort(404);
             }
 
-//            Api Token create
-
-            $token = $user->createToken('authToken')->plainTextToken;
-            // Auth::login($user);
+            $user=User::where('email',$request->email)->firstOrFail();
+            $token=$user->createToken('auth_token')->plainTextToken;
+            //  Auth::login($user);
 
             // return response()->json(['message'=> 'Login successfully.','user' => $user ,'token'=> $token], 200);
 
             // return redirect()->route('home.page');
-            return redirect('/home');
+            return redirect()->route('home.page')->with('success', 'Login successfully');
 
         }catch (Exception $e){
             return response()->json(['message' => $e->getMessage()], 500);
@@ -80,13 +77,46 @@ class AuthController extends Controller
     }
 
 
-    public function UserLogout(Request $request){
+    public function UserLogout(Request $request)
+    {
+        // Only delete the current token
+        $request->user()->currentAccessToken()->delete();
 
-        $request->user()->tokens()->delete();
+        // Session clear and home page redirection
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        return response()->json(['message' => 'User successfully logged out.'], 200);
-
+        return redirect('/login')->with('User logout successfully.');
     }
+
+
+    public function showProfile (){
+
+         $user = Auth::user();
+
+        return view('pages.profile', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|unique:users,email,' . $user->id,
+        ]);
+
+        // Update user data
+        User::where('id', '=', Auth::id())->update([
+            'name'=> $request->input('name'),
+            'email'=> $request->input('email')
+        ]);
+
+        return redirect()->route('profile.view')->with('success', 'Profile updated successfully');
+    }
+
+
 
 
 }

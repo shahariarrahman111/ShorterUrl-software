@@ -21,7 +21,10 @@ class UserController extends Controller
 
     public function Home (){
 
-        return view('pages.home');
+        $user = Auth::user();
+    
+        // Blade view sending
+        return view('pages.home', compact('user'));
     }
 
 

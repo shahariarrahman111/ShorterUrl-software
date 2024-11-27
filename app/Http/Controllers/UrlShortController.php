@@ -15,6 +15,12 @@ use function PHPUnit\Framework\throwException;
 class UrlShortController extends Controller
 {
 
+    // public function __construct()
+    // {
+    //     // Middleware to ensure user is authenticated and verified
+    //     $this->middleware(['auth:sanctum', 'verified']);
+    // }
+
     public function createShortUrl(Request $request){
         
         try{
@@ -50,7 +56,7 @@ class UrlShortController extends Controller
                 throw new Exception('Url not created');
             }
             // return redirect()->route('home');
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Url Created successfully');;
 
 
         }catch(Exception $e){
@@ -84,14 +90,19 @@ class UrlShortController extends Controller
     public function showDashboard(Request $request)
     {
 
-        $urls = Url::where('user_id', Auth::id())->get();
+        if (!Auth::user()){
+            return redirect()->route('home.page');
+        }
 
+        // Login information
+        $user = Auth::user();
+
+        $urls = Url::where('user_id', Auth::id())->get();
 
         // Pagination configure
         $perPage = 10; 
         $currentPage = $request->get('page', 1); 
-
-        
+   
         $paginatedUrls = collect($urls)->forPage($currentPage, $perPage);
 
         // Pagination link
@@ -102,7 +113,8 @@ class UrlShortController extends Controller
         return view('pages.dashboard', [
             'paginatedUrls' => $paginatedUrls,
             'totalPages' => $totalPages,
-            'currentPage' => $currentPage
+            'currentPage' => $currentPage,
+            'user' => $user
         ]);
     }
 

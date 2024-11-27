@@ -5,6 +5,6 @@
         <a href="{{ route('home.page')}}">Home</a>
         <a href="/urls">Manage URLs</a>
         <a href="/statistics">Statistics</a>
-        <a href="/profile">Profile</a>
+        <a href="{{ route('profile.view') }}">Profile</a>
         <a href="{{ route('user.logout') }}" class="text-danger">Logout</a>
       </div>
