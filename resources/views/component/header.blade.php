@@ -14,7 +14,7 @@
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <!-- Profile Picture -->
-                <img src="{{ asset('storage/' . Auth::user()->img) }}" alt="Profile" class="rounded-circle me-2" width="40" height="40">
+                <img src="{{ asset('images/' . Auth::user()->img) }}" alt="Profile" class="rounded-circle me-2" width="40" height="40">
                 <!-- Name Placeholder -->
                 <span class="text-white">{{ Auth::user()->name }}</span>
             </a>
@@ -22,7 +22,10 @@
                 <!-- Dropdown Items -->
                 <li><a class="dropdown-item" href="{{ route('profile.view') }}">View Profile</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="{{ route('user.logout') }}">Logout</a></li>
+                <form action="{{ route('user.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="dropdown-item text-danger">Logout</button>
+                </form>
             </ul>
         </div>
     </div>

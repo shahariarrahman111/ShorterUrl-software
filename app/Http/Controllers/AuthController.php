@@ -22,25 +22,30 @@ class AuthController extends Controller
                 'password' => 'required|string|min:6|confirmed'
             ]);
 
-            if ($request->hasfile('img') && $request->file('img')->isValid()){
-                $path = $request->file('img')->store('images', 'public');
-            }else{
 
-                return response()->json(['message' => 'Image is required sha.'], 400);
-            }
+            // Check if an image is uploaded
+            if ($request->hasFile('img')) {
+            // Save the uploaded image
+            $file = $request->file('img');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename); // Save to public/images
+            $imagePath =$filename; // Store image path in database
 
 
+            // Create user
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
-                'img' => $path,
+                'img' => $imagePath,
                 'password' => Hash::make($request->password)
             ]);
 
-
             // return response()->json(['message' => 'User registered successfully.'], 200);
 
-            return redirect()->route('login.form')->with('User registered successfully.');
+            return redirect()->route('login.form')->with('success','User registered successfully.');
+        }else{
+            return response()->json(['message' => 'Image is required'], 400);
+        }    
 
         }catch (Exception $e){
             return response()->json(['message' => $e->getMessage()], 500);
@@ -58,8 +63,10 @@ class AuthController extends Controller
                 'password' => 'required|string|min:6'
             ]);
 
+
+            // Checking has email and password stay in database
             if (!Auth::attempt($request->only('email', 'password'))) {
-                abort(404);
+                return redirect()->route('register.form');
             }
 
             $user=User::where('email',$request->email)->firstOrFail();
@@ -69,6 +76,7 @@ class AuthController extends Controller
             // return response()->json(['message'=> 'Login successfully.','user' => $user ,'token'=> $token], 200);
 
             // return redirect()->route('home.page');
+            
             return redirect()->route('home.page')->with('success', 'Login successfully');
 
         }catch (Exception $e){
@@ -79,15 +87,20 @@ class AuthController extends Controller
 
     public function UserLogout(Request $request)
     {
-        // Only delete the current token
-        $request->user()->currentAccessToken()->delete();
+        // User request for logout
+        $user = $request->user();
 
-        // Session clear and home page redirection
-        Auth::logout();
+        //Delete all the user's tokens
+        $user->tokens->each(function ($token) {
+            $token->delete(); 
+        });
+    
+        // Logout the user and clear the session
+        Auth::guard('web')->logout();  // Use `guard('web')` for standard session logout
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('User logout successfully.');
+        return redirect('/login')->with('success','User logout successfully.');
     }
 
 

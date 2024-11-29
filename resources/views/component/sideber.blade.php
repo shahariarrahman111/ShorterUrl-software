@@ -6,5 +6,8 @@
         <a href="/urls">Manage URLs</a>
         <a href="/statistics">Statistics</a>
         <a href="{{ route('profile.view') }}">Profile</a>
-        <a href="{{ route('user.logout') }}" class="text-danger">Logout</a>
+        <form action="{{ route('user.logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="dropdown-item text-danger">Logout</button>
+        </form>
       </div>
