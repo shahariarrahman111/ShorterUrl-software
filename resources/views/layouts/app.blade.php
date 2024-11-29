@@ -31,7 +31,7 @@
     @if(session('success'))
     <script>
         Swal.fire({
-            position: 'top-start',  // Position to the top-left corner
+            position: 'top-end',  // Position to the top-left corner
             icon: 'success',
             title: "{{ session('success') }}",
             showConfirmButton: false,
