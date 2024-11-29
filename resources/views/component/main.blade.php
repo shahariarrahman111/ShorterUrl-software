@@ -11,13 +11,14 @@
                 <h5 class="mb-0 text-center">URL Management</h5>
             </div>
             <div class="card-body p-0">
-                <table class="table table-bordered table-striped mb-0">
+                <table class="table table-bordered table-striped mb-0" id="tabll">
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Big URL</th>
                             <th scope="col">Small URL</th>
                             <th scope="col">Click Count</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,6 +28,13 @@
                             <td><a href="{{ $url->big_url }}" target="_blank">{{ $url->big_url }}</a></td>
                             <td><a href="{{ url($url->small_url) }}" target="_blank">{{ url($url->small_url) }}</a></td>
                             <td>{{ $url->count_click }}</td>
+                            <td>
+                            <form action="{{ route('url.delete', $url->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this URL?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

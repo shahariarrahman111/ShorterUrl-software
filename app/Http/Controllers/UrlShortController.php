@@ -119,6 +119,23 @@ class UrlShortController extends Controller
     }
 
 
+    public function DeleteUrl ($id){
+
+        $url =Url::where('id', $id)->where('user_id', Auth::id())->first();
+
+        if (!$url) {
+            return redirect()->route('dashboard')->with('error', 'You do not have permission to delete this URL or the URL does not exist.');
+        }
+
+        $url->delete();
+
+        return redirect()->route('user.dashboard')->with('success', 'Short URL deleted successfully.');
+
+
+
+    }
+
+
 
 
 }    

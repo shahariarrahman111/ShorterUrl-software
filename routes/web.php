@@ -21,6 +21,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/short-url', [UrlShortController::class, 'createShortUrl'])->name('short.url');
     Route::get('/dashboard', [UrlShortController::class, 'showDashboard'])->name('user.dashboard');
     Route::get('/url-form', [UserController::class, 'showUrlForm'])->name('url.form');
+    Route::delete('/delete-url/{id}', [UrlShortController::class, 'DeleteUrl'])->name('url.delete');
     Route::post('/logout', [AuthController::class, 'UserLogout'])->name('user.logout');
     Route::get('/profile', [AuthController::class, 'showProfile'])->name('profile.view');
     Route::post('profile/update', [AuthController::class, 'updateProfile'])->name('profile.update');
